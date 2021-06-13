@@ -34,14 +34,46 @@ test("intial conditions", () => {
 test("Checkbox disables button on first click and enables on second click", () => {
   render(<App />);
 
-  const checkbox = screen.getByRole("checkbox");
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
   const button = screen.getByRole("button");
-  
+
   fireEvent.click(checkbox);
   expect(button).toBeDisabled();
 
   fireEvent.click(checkbox);
   expect(button).toBeEnabled();
+});
+
+test("Disabled button has gray background and revert to red", () => {
+  render(<App />);
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
+  const button = screen.getByRole("button");
+
+  // disable button
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "gray" });
+
+  // re-enable button
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "red" });
+});
+
+test("Clicked disabled button has gray background and revert to blue", () => {
+  render(<App />);
+  const button = screen.getByRole("button");
+  const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
+
+  // change button to blue
+  fireEvent.click(button);
+  expect(button).toHaveStyle({ backgroundColor: "blue" });
+
+  // disable button
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "gray" });
+
+  // re-enable button
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle({ backgroundColor: "blue" });
 });
 
 // test('renders learn react link', () => {
