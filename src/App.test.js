@@ -6,25 +6,25 @@ test("button has correct initial color", () => {
   render(<App />);
 
   // find and element with a role of button and text of 'Change to blue'
-  const colorButton = screen.getByRole("button", { name: "Change to blue" });
+  const colorButton = screen.getByRole("button", { name: "Change to MidnightBlue" });
 
   // expect the background color to be red
-  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+  expect(colorButton).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
   // click button
   fireEvent.click(colorButton);
 
   // expect the background color to be blue
-  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+  expect(colorButton).toHaveStyle({ backgroundColor: "MidnighBlue" });
 
   // expect the button text to be 'Change to red'
-  expect(colorButton.textContent).toBe("Change to red");
+  expect(colorButton.textContent).toBe("Change to MediumVioletRed");
 });
 
 test("intial conditions", () => {
   render(<App />);
   // check that the button starts out enabled
-  const colorButton = screen.getByRole("button", { name: "Change to blue" });
+  const colorButton = screen.getByRole("button", { name: "Change to MidnightBlue" });
   expect(colorButton).toBeEnabled();
 
   // check that the checkbox start out unchecked
@@ -56,7 +56,7 @@ test("Disabled button has gray background and revert to red", () => {
 
   // re-enable button
   fireEvent.click(checkbox);
-  expect(button).toHaveStyle({ backgroundColor: "red" });
+  expect(button).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 });
 
 test("Clicked disabled button has gray background and revert to blue", () => {
@@ -66,7 +66,7 @@ test("Clicked disabled button has gray background and revert to blue", () => {
 
   // change button to blue
   fireEvent.click(button);
-  expect(button).toHaveStyle({ backgroundColor: "blue" });
+  expect(button).toHaveStyle({ backgroundColor: "MidnighBlue" });
 
   // disable button
   fireEvent.click(checkbox);
@@ -74,7 +74,7 @@ test("Clicked disabled button has gray background and revert to blue", () => {
 
   // re-enable button
   fireEvent.click(checkbox);
-  expect(button).toHaveStyle({ backgroundColor: "blue" });
+  expect(button).toHaveStyle({ backgroundColor: "MidnighBlue" });
 });
 
 describe("spaces before camel-case capital letters", () => {
